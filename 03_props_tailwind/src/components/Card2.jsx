@@ -1,6 +1,6 @@
 import React from 'react'
-
-function Card2({product="Mackbook", data}) {
+// here we are destructing the props, product = "demo" is default product name if it is dummy then it will be used
+function Card2({product="demo", data}) {
   return (
     <div className="w-[300px] rounded-md border m-2">
       <img

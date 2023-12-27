@@ -1,5 +1,5 @@
 import React from 'react'
-
+// we can pass property using props [default name given by react team]
 function Card(props) {
     console.log(props);
   return (
