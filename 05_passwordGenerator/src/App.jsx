@@ -1,33 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useCallback, useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [length, setLength] = useState(6)
+  const [numberAllowed, setNumberAllowed] = useState(false)
+  const [spCharAllowed, setSpCharAllowed] = useState(false)
+  const [password, setPassword] = useState("")
+
+  /* In React, the useCallback hook is used to memoize functions. 
+  The benefit of useCallback is to optimize performance by preventing unnecessary re-creation of functions in situations 
+  where it's important to avoid unnecessary renders and improve the overall efficiency of your React components.
+  Here is the syntax:
+  useCallback(() => {
+    // function logic
+  }, [ dependencies ]); */
+
+  /* As each time when we are changing the length, numberAllowed, spCharAllowed these we are calling passwordGenerator() 
+  so it's better to wrap it inside useCallback() to memoize and optimize*/
+
+ const passwordGenerator = useCallback(()=>{
+    let pass = "";
+    let str="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    if(numberAllowed) str +="0123456789"
+    if(spCharAllowed) str+="@#$%&"
+    for (let i = 1; i <= length; i++) {
+      let index= Math.floor(Math.random()* str.length + 1)
+      pass+=str.charAt(index);
+    }
+    setPassword(pass);
+  }, [length,numberAllowed,spCharAllowed,setPassword])
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Password Generator {Math.random()}</h1>
     </>
   )
 }
