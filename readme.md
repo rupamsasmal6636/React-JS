@@ -18,3 +18,4 @@
 * _02_counting:_ useState & one interesting interview qs
 * _03_props_tailwind:_ components, reusibility, passing props, props destructuring, config tailwind css
 * _04_bgChanger:_ small project to change background color using useState
+* _05_passwordGenerator:_ mini project to generate password using useState, useCallBack, useEffect, useRef
