@@ -7,9 +7,9 @@ function App() {
   const [from, setFrom] = useState("usd")
   const [to, setTo] = useState("inr")
 
-  const currencyInfo = useCurrencyInfo(from,amount,from)
+  const currencyInfo = useCurrencyInfo(from) // passing the 'from' currency to get all converted data from it  
 
-  const options = Object.keys(currencyInfo)
+  const options = Object.keys(currencyInfo) // as inside json, all the currency is stored as 'key' so we need to get all keys
 
   const convert = () => {
     setConvertedAmount(amount * currencyInfo[to])
@@ -33,7 +33,7 @@ function App() {
           <form 
             onSubmit={(e)=> {
               e.preventDefault();
-              convert();
+              convert(); // after the convert press/form submit the convert function will trigered
             }}
           >
             <div className='w-full mb-1'>
@@ -61,8 +61,8 @@ function App() {
                 amount={convertedAmount}
                 currencyOptions={options}
                 selectCurrency={to}
-                amountDisable
-                onCurrencyChange={(currency)=>setTo(cu)}
+                amountDisable 
+                onCurrencyChange={(currency)=>setTo(currency)}
               />
             </div>
             <button type='submit' className='w-full bg-blue-500 text-white p-3 hover:bg-blue-900'>

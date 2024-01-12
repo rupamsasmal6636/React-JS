@@ -1,4 +1,5 @@
 // Custom hooks is nothing but a function that return something
+// here I'm creating useCurrencyInfo hook to get all converted json data from a given currency
 
 import { useEffect, useState } from "react";
 
