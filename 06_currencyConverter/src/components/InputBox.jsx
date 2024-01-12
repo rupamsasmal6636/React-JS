@@ -5,17 +5,18 @@ function InputBox(
     label, 
     className="",
     amount,
-    onAmountChange,
-    onCurrencyChange,
     currencyOptions = [],
     selectCurrency = "usd",
     amountDisable = false,
-    currencyDisable = false
+    currencyDisable = false,
+    onAmountChange,
+    onCurrencyChange,
+    
   }) 
 {
   const amoutInputId= useId()
   return (
-    <div className={`bg-white p-3 rounded-lg text-sm flex ${className}`}>
+    <div className={`bg-white p-3 rounded-lg text-lg flex ${className}`}>
         <div className='w-1/2'>
             <label htmlFor="{amoutInputId}" className='text-black mb-2 inline-block'>
                 {label}
@@ -37,7 +38,7 @@ function InputBox(
             <select 
                 className='rounded-lg p-1 bg-gray-100 cursor-pointer outline-none' 
                 value={selectCurrency} 
-                onChange={(e)=>onCurrencyChange && onCurrencyChange(Number(e.target.value))}
+                onChange={(e)=>onCurrencyChange && onCurrencyChange(e.target.value)}
                 disabled={currencyDisable}
             >
                 {currencyOptions.map((currency)=>(
